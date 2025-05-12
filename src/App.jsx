@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Slider from './components/Slider/Slider';
+
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const sliderItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   return (
-    <>
+    <div className="flex-container">
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+          <Slider
+            spaceBetween={16}
+            slidesPerView={4}
+            slidesPerGroup={4}
+            loop={true}
+            autoPlay={true}
+            autoPlayInterval={4000}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+              },
+              1366: {
+                slidesPerView: 4,
+                slidesPerGroup: 4,
+              },
+            }}
+          >
+            {sliderItems.map((item, index) => (
+                <div className="item" key={index}>{item}</div>
+            ))}
+          </Slider>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
