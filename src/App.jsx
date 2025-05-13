@@ -7,13 +7,12 @@ function App() {
 
   return (
     <div className="flex-container">
-      <div>
           <Slider
             spaceBetween={16}
             slidesPerView={4}
             slidesPerGroup={4}
             loop={true}
-            autoPlay={true}
+            autoPlay={false}
             autoPlayInterval={4000}
             breakpoints={{
               320: {
@@ -30,8 +29,6 @@ function App() {
                 <div className="item" key={index}>{item}</div>
             ))}
           </Slider>
-
-      </div>
     </div>
   );
 }
