@@ -12,7 +12,7 @@ function App() {
             slidesPerView={4}
             slidesPerGroup={4}
             loop={true}
-            autoPlay={false}
+            autoPlay={true}
             autoPlayInterval={4000}
             breakpoints={{
               320: {
@@ -20,8 +20,9 @@ function App() {
                 slidesPerGroup: 1,
               },
               1366: {
-                slidesPerView: 4,
-                slidesPerGroup: 4,
+                slidesPerView: 3,
+                slidesPerGroup: 2,
+                spaceBetween: 18,
               },
             }}
           >

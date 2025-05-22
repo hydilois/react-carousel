@@ -44,7 +44,7 @@ const Slider = ({
     if (sliderContainerRef.current) {
       const sliderContainerWidth = sliderContainerRef.current.offsetWidth;
 
-      const elements = sliderContainerRef.current.querySelectorAll('[data-slide-index]');
+      const elements = sliderContainerRef.current.querySelectorAll('.slider-item');
 
       elements.forEach(el => {
         const sliderItemWidth = Math.ceil((sliderContainerWidth / slidesPerView) - spaceBetween);
@@ -195,6 +195,7 @@ const Slider = ({
           {sliderItems.map((item, index, array) => {
             return (
               <div
+                className="slider-item" 
                 key={index}
                 ref={setSliderItemRef(index, array)}
                 data-slide-index={
