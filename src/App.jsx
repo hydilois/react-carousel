@@ -20,8 +20,8 @@ function App() {
                 slidesPerGroup: 1,
               },
               1366: {
-                slidesPerView: 3,
-                slidesPerGroup: 2,
+                slidesPerView: 4,
+                slidesPerGroup: 4,
                 spaceBetween: 18,
               },
             }}
