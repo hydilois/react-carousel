@@ -8,4 +8,4 @@ npm install
 npm run dev
 ```
 
-You can read the full article at: 
+You can read the full article at: https://whatisweb.dev/building-a-responsive-carousel-component-in-react-the-complete-guide
