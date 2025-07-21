@@ -15,6 +15,7 @@ const Slider = ({
   children,
   autoPlay = false,
   autoPlayInterval = 2000,
+  rows = 1,
 }) => {
   const [slidesPerView, setSlidesPerView] = useState(initialSliderPerView);
   const [slidesPerGroup, setSlidesPerGroup] = useState(initialSliderPerGroup);
@@ -163,6 +164,18 @@ const Slider = ({
       ]
     : items;
 
+  const sliderItemsByRow = [];
+  if (rows > 1) {
+    const itemsPerRow = Math.ceil(sliderItems.length / rows);
+    for (let i = 0; i < rows; i++) {
+      sliderItemsByRow.push(
+        sliderItems.slice(i * itemsPerRow, (i + 1) * itemsPerRow)
+      );
+    }
+  } else {
+    sliderItemsByRow.push(sliderItems);
+  }
+
   const setSliderItemRef = (index, sliderItemsArray) => {
     if (loop && index === 0) {
       return firstSliderItemRef;
@@ -183,19 +196,24 @@ const Slider = ({
       <div className={styles.slidesContainer} ref={sliderContainerRef}>
         <div
           onTransitionEnd={handleTransitionEnd}
+          className={rows > 1 ? styles.slidesGrid : ""}
           style={{
-            display: "flex",
+            display: rows > 1 ? "grid" : "flex",
+            flexDirection: rows > 1 ? "unset" : "column",
+            gridTemplateColumns: rows > 1 ? `repeat(${slidesPerView}, 1fr)` : "unset",
             transition: !transitionEnabled ? "none" : "all 0.5s ease-in-out",
             transform: `translateX(${
               (sliderItemWidth + spaceBetween) * activeSlideIndex * -1
             }px)`,
             marginBottom: "3px",
+            "--slider-item-width": `${sliderItemWidth}px`,
+            "--space-between": `${spaceBetween}px`,
           }}
         >
           {sliderItems.map((item, index, array) => {
             return (
               <div
-                className="slider-item" 
+                className="slider-item"
                 key={index}
                 ref={setSliderItemRef(index, array)}
                 data-slide-index={
@@ -207,11 +225,6 @@ const Slider = ({
                     ? index - items.length - slidesPerView
                     : index - slidesPerView
                 }
-                style={{
-                  marginRight: Number(spaceBetween)
-                    ? `${spaceBetween}px`
-                    : "0px",
-                }}
               >
                 {item}
               </div>
