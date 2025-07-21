@@ -3,7 +3,7 @@ import Slider from './components/Slider/Slider';
 import './App.css';
 
 function App() {
-  const sliderItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const sliderItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
   return (
     <div className="flex-container">
